@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<table id="blog" class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col"> Blog ID </th>
+        <th scope="col"> Blog Name </th>
+        <th scope="col"> Blog Summary</th>
+        <th scope="col"> Blog Content </th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="blogs, iter: ${blogs}">
+            <td th:text="${blogs.getBlogId()}"></td>
+            <td th:text="${blogs.getBlogName()}"></td>
+            <td th:text="${blogs.getBlogSummary()}"></td>
+            <td><a th:href="@{/blog/content/__${blogs.getBlogId()}__}"><button class="btn btn-success">Content</button></a></td>
+            <td><a th:href="@{/blog/edit/__${blogs.getBlogId()}__}"><button class="btn btn-success">Edit</button></a></td>
+            <td><a th:href="@{/blog/delete/__${blogs.getBlogId()}__}"><button class="btn btn-danger" >Delete</button></a></td>
+        </tr>
+    </tbody>
+</table>
+<a th:href="@{/blog/content/create}"><button class="btn btn-success">Create</button></a>
+</body>
+</html>
